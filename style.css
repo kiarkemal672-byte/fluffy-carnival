@@ -1,0 +1,305 @@
+/* ============================================================
+   ملف التنسيقات - جدول متابعة الطلاب
+   style.css
+   ============================================================ */
+
+/* ================= إعادة الضبط ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+/* ================= المتغيرات ================= */
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+  --green: #16a34a;
+  --red: #dc2626;
+  --orange: #d97706;
+  --bg: #f1f5f9;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ================= 1) الهيدر ================= */
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  padding: 28px 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+
+.header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.header p {
+  opacity: .85;
+}
+
+/* ================= 2) كروت الإحصائيات ================= */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.stat-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+  border-right: 4px solid var(--primary);
+}
+
+.stat-card .icon {
+  font-size: 28px;
+}
+
+.stat-card .num {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 6px 0;
+}
+
+.stat-card .label {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.stat-card.total   { border-color: var(--primary); }
+.stat-card.present { border-color: var(--green); }
+.stat-card.absent  { border-color: var(--red); }
+.stat-card.avg     { border-color: var(--orange); }
+
+/* ================= 3) شريط الأدوات ================= */
+.toolbar {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+  margin-bottom: 16px;
+}
+
+.toolbar input,
+.toolbar select {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.toolbar input:focus,
+.toolbar select:focus {
+  border-color: var(--primary);
+}
+
+.search {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* ================= الأزرار ================= */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-cancel {
+  background: var(--border);
+  color: var(--text);
+}
+
+/* ================= 4) الجدول ================= */
+.table-box {
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 850px;
+}
+
+th,
+td {
+  padding: 12px 14px;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  background: #f8fafc;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* شارات الحالة */
+.badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.badge.present { background: #dcfce7; color: var(--green); }
+.badge.absent  { background: #fee2e2; color: var(--red); }
+.badge.late    { background: #fef3c7; color: var(--orange); }
+
+/* ألوان الدرجات */
+.grade {
+  font-weight: bold;
+}
+
+.grade-high { color: var(--green); }    /* 85 فأكثر */
+.grade-mid  { color: var(--primary); }  /* 65 - 84 */
+.grade-low  { color: var(--orange); }   /* 50 - 64 */
+.grade-fail { color: var(--red); }      /* أقل من 50 */
+
+/* أزرار الإجراءات */
+.actions-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-sm {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-edit   { background: #dbeafe; color: var(--primary); }
+.btn-delete { background: #fee2e2; color: var(--red); }
+
+/* رسالة لا توجد بيانات */
+.empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+}
+
+/* ================= 5) النافذة المنبثقة ================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+}
+
+.modal h2 {
+  margin-bottom: 18px;
+}
+
+/* عناصر النموذج */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ================= 6) الفوتر ================= */
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+/* ================= التجاوب مع الشاشات الصغيرة ================= */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 22px;
+  }
+}
